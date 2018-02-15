@@ -1,5 +1,4 @@
 #pragma once
-
 #include<vector>
 #include "GameObject.h"
 
@@ -9,7 +8,6 @@ public:
 	GameObjManager();
 	~GameObjManager();
 
-	std::vector<GameObject> listOfGameObjs; 
-
+	std::vector<GameObject> listOfGameObjs;
 };
 

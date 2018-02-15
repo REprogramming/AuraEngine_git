@@ -169,12 +169,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AuraEngine.cpp" />
+    <ClCompile Include="c_BaseComponent.cpp" />
+    <ClCompile Include="c_Transform.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuraEngine.h" />
+    <ClInclude Include="c_BaseComponent.h" />
+    <ClInclude Include="c_Transform.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjManager.h" />
   </ItemGroup>

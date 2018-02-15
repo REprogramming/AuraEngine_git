@@ -32,9 +32,10 @@ bool AuraEngine::initialize()
 		return false;
 
 	if (!checkCPU())
-		return false; 
+		return false;
 
-	return true;
+	return true; 
+	
 }
 	
 bool AuraEngine::checkStorage()
@@ -147,6 +148,7 @@ bool AuraEngine::checkAvailMemory()
 			window.clear();
 
 			// draw objects
+
 			window.display();
 		}
 	}
@@ -169,7 +171,5 @@ bool AuraEngine::checkAvailMemory()
 		window.draw(sprite); 
 		window.display(); 
 
-		// TODO: pausing display screen...
-		//system("pause");
 
 	}
