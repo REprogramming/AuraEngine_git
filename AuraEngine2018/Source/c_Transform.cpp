@@ -4,64 +4,41 @@
 float x;
 float y;
 float z;
+float rotateX;
+float rotateY; 
+float rotateZ; 
+float scaleX;
+float scaleY; 
+float scaleZ; 
 float alpha;
 
 
-c_Transform::c_Transform() // CONSTRUCTOR
+c_Transform::c_Transform()
 {
-	vec3(0, 0, 0);
-	vecUI3(0.0f, 0.0f, 0.0f, 0.0f);
 }
-
 
 c_Transform::~c_Transform() // DESTRUCTOR
 {
 }
 
-void c_Transform::vec2(float x, float y)
+
+void c_Transform::translate(float x, float y)
 {
-	x = x;
-	y = y;
+
 }
 
-void c_Transform::vec3(float x, float y, float z)
+void c_Transform::rotate(float x, float y)
 {
-	x = x;
-	y = y;
-	z = z;
+	sf::Transform rotation;
+	rotation.rotate(x); 
+	rotation.rotate(y); 	
+
+	// now put it in a transformation matrix
 }
 
-void c_Transform::vecUI2(float x, float y, float alpha)
-{
-	x = x;
-	y = y;
-	alpha = alpha;
+void c_Transform::scale(float x, float y)
+{	
+	myScale.x *= x;
+	myScale.y *= y; 	
 }
 
-void c_Transform::vecUI3(float x, float y, float z, float alpha)
-{
-	x = x;
-	y = y;
-	z = z;
-	alpha = alpha;
-}
-
-void c_Transform::setX(float x)
-{
-	x = x;
-}
-
-void c_Transform::setY(float y)
-{
-	y = y;
-}
-
-void c_Transform::setZ(float z)
-{
-	z = z;
-}
-
-void c_Transform::setAlpha(float alpha)
-{
-	alpha = alpha;
-}

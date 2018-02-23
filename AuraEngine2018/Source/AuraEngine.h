@@ -6,6 +6,8 @@
 #include <windows.h>
 #include <direct.h>
 
+#include "GameObjManager.h"
+
 class AuraEngine
 {
 
@@ -19,6 +21,7 @@ public:
 	static void gameLoop();
 	static void displaySplashScreen(); 
 	static bool isRunning; 
+		
 
 	struct gameEngineRequirements
 	{
@@ -30,4 +33,5 @@ public:
 	};
 	
 	static gameEngineRequirements gameRequirements;
+	static GameObjManager gameObjectManager;
 };

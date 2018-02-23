@@ -1,19 +1,40 @@
 #pragma once
-class c_Transform
+
+#include "c_BaseComponent.h"
+#include "SFML\Graphics\Transform.hpp"
+
+
+struct Vector2
 {
 public:
-	c_Transform();
-	~c_Transform();
+	Vector2() : x(0.0f), y(0.0f) {}
+	Vector2(float _x, float _y) : x(_x), y(_y) {}
+	float x, y;
+};
 
 
-	void vec2(float x, float y);
-	void vec3(float x, float y, float z);
-	void vecUI2(float x, float y, float alpha);
-	void vecUI3(float x, float y, float z, float alpha);
 
-	void setX(float x);
-	void setY(float y);
-	void setZ(float z);
-	void setAlpha(float alpha);
+class c_Transform : public c_BaseComponent 
+{
+	void calculateTransform(){
+
+	}
+
+	public:
+		c_Transform();
+		~c_Transform();
+
+		Vector2 myPosition;
+		Vector2 myScale;
+		Vector2 myRotation;		
+		
+		void translate(float x, float y);		
+		void rotate(float x, float y); 
+		void scale(float x, float y);			
+
+	private:
+		sf::Transform transformMatrix;
+		sf::Transform translation; 
+		
 };
 

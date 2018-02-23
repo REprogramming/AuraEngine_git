@@ -1,16 +1,11 @@
 #include "AuraEngine.h"
 
 
+// Static variables - predefined
 bool AuraEngine::isRunning;
 AuraEngine::gameEngineRequirements AuraEngine::gameRequirements;
+GameObjManager AuraEngine::gameObjectManager;
 
-void AuraEngine::start()
-{
-	while (isRunning)
-	{
-		
-	}
-}
 
 bool AuraEngine::initialize()
 {
@@ -37,7 +32,8 @@ bool AuraEngine::initialize()
 	return true; 
 	
 }
-	
+
+
 bool AuraEngine::checkStorage()
 {
 	int const DRIVE = _getdrive();
@@ -59,7 +55,6 @@ bool AuraEngine::checkAvailMemory()
 	status.dwLength = sizeof(MEMORYSTATUSEX);
 	GlobalMemoryStatusEx(&status);
 	DWORDLONG totalVirtualMem = status.ullTotalPageFile;
-
 	DWORDLONG totalPhysMemAvail = status.ullTotalPhys;
 	DWORDLONG physMemUsed = status.ullTotalPhys - status.ullAvailPhys;
 
@@ -97,7 +92,6 @@ bool AuraEngine::checkAvailMemory()
 		HKEY hKey;
 		DWORD stringType = REG_SZ;
 		char charArray[MAX_PATH];
-
 		long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &hKey);
 
 		if (lError != ERROR_SUCCESS)
@@ -122,12 +116,41 @@ bool AuraEngine::checkAvailMemory()
 		else 
 		{
 			std::cout << "INSUFFICENT CPU SPEED REQUIREMENTS." << std::endl; 
-		}		
-		
+		}				
 		return dwMHZ;		
 	}
 
+	void AuraEngine::displaySplashScreen()
+	{
+		sf::RenderWindow window(sf::VideoMode(800, 600), "AURA GAME ENGINE 2018");
+		window.setFramerateLimit(30);
+
+		sf::Texture splashTexture;
+		if (!splashTexture.loadFromFile("../assets/textures/auraSplash.jpg"))
+		{
+			std::cout << "Splash texture not found" << std::endl;
+			return;
+		}
+
+		sf::Sprite sprite(splashTexture);
+		sprite.setScale(0.5f, 0.5f);
+		window.clear();
+		window.draw(sprite);
+		window.display();
+	}
 	
+	
+
+	void AuraEngine::start()
+	{
+		gameObjectManager.start();
+		while (isRunning)
+		{
+			gameLoop();
+		}
+	}
+
+
 
 	void AuraEngine::gameLoop()
 	{
@@ -138,38 +161,20 @@ bool AuraEngine::checkAvailMemory()
 		{
 			// handle events
 			sf::Event event;
-			while (window.pollEvent(event))
+
+			/*while (window.pollEvent(event))
 			{
 				if (event.type == sf::Event::Closed)
 					window.close();
-			}
+			}*/
 
-			// update
+			// update			
+			gameObjectManager.update(); 
 			window.clear();
 
 			// draw objects
-
 			window.display();
 		}
 	}
 
-	void AuraEngine::displaySplashScreen()
-	{
-		sf::RenderWindow window(sf::VideoMode(800, 600), "AURA GAME ENGINE 2018");
-		window.setFramerateLimit(30);
-
-		sf::Texture splashTexture; 	
-		if (!splashTexture.loadFromFile("../assets/textures/auraSplash.jpg"))
-		{
-			std::cout << "Splash texture not found" << std::endl; 
-			return; 
-		}
-
-		sf::Sprite sprite(splashTexture);
-		sprite.setScale(0.5f, 0.5f); 
-		window.clear(); 
-		window.draw(sprite); 
-		window.display(); 
-
-
-	}
+	
