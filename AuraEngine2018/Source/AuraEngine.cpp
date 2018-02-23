@@ -1,15 +1,17 @@
 #include "AuraEngine.h"
 
-
 // Static variables - predefined
 bool AuraEngine::isRunning;
 AuraEngine::gameEngineRequirements AuraEngine::gameRequirements;
-GameObjManager AuraEngine::gameObjectManager;
 
 
 bool AuraEngine::initialize()
 {
+	// Display Splash Screen
 	displaySplashScreen();
+	
+	// Check requirements
+	gameEngineRequirements;
 	gameRequirements.CPU_REQUIRED = 1500;
 	gameRequirements.GPU_REQUIRED = 100;
 	gameRequirements.STORAGE_REQUIRED = 1000; 
@@ -18,8 +20,7 @@ bool AuraEngine::initialize()
 
 	std::cout << "Starting initialize..." << std::endl;
 	isRunning = false;
-
-	gameEngineRequirements;
+		
 	if (!checkStorage())
 		return false;
 
@@ -29,8 +30,7 @@ bool AuraEngine::initialize()
 	if (!checkCPU())
 		return false;
 
-	return true; 
-	
+	return true; 	
 }
 
 
@@ -143,7 +143,8 @@ bool AuraEngine::checkAvailMemory()
 
 	void AuraEngine::start()
 	{
-		gameObjectManager.start();
+		_gameObjectManager.start();
+		
 		while (isRunning)
 		{
 			gameLoop();
@@ -160,21 +161,17 @@ bool AuraEngine::checkAvailMemory()
 		while (window.isOpen())
 		{
 			// handle events
-			sf::Event event;
-
-			/*while (window.pollEvent(event))
-			{
-				if (event.type == sf::Event::Closed)
-					window.close();
-			}*/
+			sf::Event event;			
 
 			// update			
-			gameObjectManager.update(); 
+			_gameObjectManager.update(); 
 			window.clear();
 
 			// draw objects
 			window.display();
 		}
 	}
+
+	GameObjManager AuraEngine::_gameObjectManager;
 
 	

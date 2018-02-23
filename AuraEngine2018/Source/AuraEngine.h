@@ -20,7 +20,8 @@ public:
 	static bool checkAvailMemory(); 
 	static void gameLoop();
 	static void displaySplashScreen(); 
-	static bool isRunning; 
+	static bool isRunning; 	
+	static GameObjManager _gameObjectManager;
 		
 
 	struct gameEngineRequirements
@@ -33,5 +34,4 @@ public:
 	};
 	
 	static gameEngineRequirements gameRequirements;
-	static GameObjManager gameObjectManager;
 };

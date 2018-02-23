@@ -9,10 +9,6 @@ GameObjManager::~GameObjManager()
 {
 }
 
-GameObject * GameObjManager::CreateObject()
-{
-	return nullptr;
-}
 
 
 void GameObjManager::start()
@@ -29,3 +25,4 @@ void GameObjManager::update()
 		(i->second)->update();
 	}
 }
+

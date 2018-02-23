@@ -2,8 +2,7 @@
 #include "AuraEngine.h"
 
 int main()
-{		
-
+{	
 	if (AuraEngine::initialize()) {
 		AuraEngine::start();
 	}

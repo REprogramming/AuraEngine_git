@@ -5,6 +5,10 @@
 #include <list>
 #include <vector>
 #include <iterator>
+
+
+#include "AuraEngine.h"
+#include "GameObjManager.h"
 #include "c_BaseComponent.h"
 #include "c_Transform.h"
 
@@ -14,34 +18,36 @@
 
 class GameObject
 {
+	private:
+
+	int uniqueId;
+	c_Transform transform;    //local transform	
+	GameObject* parent;
+	std::vector<GameObject*> children;
+	std::vector<c_BaseComponent*> m_Components;
+	
+	
 	public:
 		
+		int setID();
 		int getID() const { return uniqueId; }
-		int GetObjectID() const { return uniqueId; }
-
-		void addComponent(c_BaseComponent* component);
-
+	
+		void addToObjMgr(GameObject* newObj); 
 		void setParent();
 		void addChild();
+		void addComponent(c_BaseComponent* component);	
 
 		void awake();
 		void start();
 		void update();
 	
 		// Constructor
-		GameObject(int Unum) {
-			uniqueId = Unum; 		
-		}; 
+		GameObject(int Unum); 
 	
+		// Destructor
 		~GameObject();
 
 	
-	private: // Members
-		int uniqueId;
-		GameObject* parent;
-		std::vector<GameObject*> children;	
-		std::vector<c_BaseComponent*> m_Components;
-		c_Transform transform;    //local transform	
-		// TODO: WORLD TRANSFORM setup 
+	
 };
 
