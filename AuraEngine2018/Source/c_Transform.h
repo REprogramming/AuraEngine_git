@@ -1,6 +1,7 @@
 #pragma once
 
 #include "c_BaseComponent.h"
+#include "SFML\Graphics.hpp"
 #include "SFML\Graphics\Transform.hpp"
 
 
@@ -14,7 +15,7 @@ public:
 
 
 
-class c_Transform : public c_BaseComponent 
+class c_Transform : public c_BaseComponent, sf::Transformable
 {
 	void calculateTransform(){
 
@@ -29,12 +30,11 @@ class c_Transform : public c_BaseComponent
 		Vector2 myRotation;		
 		
 		void translate(float x, float y);		
-		void rotate(float x, float y); 
+		void rotate(float degrees); 
 		void scale(float x, float y);			
 
 	private:
 		sf::Transform transformMatrix;
-		sf::Transform translation; 
-		
+			
 };
 

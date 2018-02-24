@@ -3,7 +3,7 @@
 // Static variables - predefined
 bool AuraEngine::isRunning;
 AuraEngine::gameEngineRequirements AuraEngine::gameRequirements;
-
+GameObjManager AuraEngine::fullScene; 
 
 bool AuraEngine::initialize()
 {
@@ -18,6 +18,8 @@ bool AuraEngine::initialize()
 	gameRequirements.PHYSICAL_RAM_NEEDED = 100; 
 	gameRequirements.VIRTUAL_RAM_NEEDED = 100; 
 
+	
+	
 	std::cout << "Starting initialize..." << std::endl;
 	isRunning = false;
 		
@@ -30,6 +32,7 @@ bool AuraEngine::initialize()
 	if (!checkCPU())
 		return false;
 
+	
 	return true; 	
 }
 
@@ -142,9 +145,7 @@ bool AuraEngine::checkAvailMemory()
 	
 
 	void AuraEngine::start()
-	{
-		_gameObjectManager.start();
-		
+	{				
 		while (isRunning)
 		{
 			gameLoop();
@@ -158,13 +159,15 @@ bool AuraEngine::checkAvailMemory()
 		sf::RenderWindow window(sf::VideoMode(1024, 768), "SFML");
 		window.setFramerateLimit(30);
 
+	
+
 		while (window.isOpen())
 		{
 			// handle events
 			sf::Event event;			
 
 			// update			
-			_gameObjectManager.update(); 
+			fullScene.update(); 
 			window.clear();
 
 			// draw objects
@@ -172,6 +175,7 @@ bool AuraEngine::checkAvailMemory()
 		}
 	}
 
-	GameObjManager AuraEngine::_gameObjectManager;
+
+
 
 	

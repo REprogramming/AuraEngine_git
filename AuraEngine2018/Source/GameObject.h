@@ -1,5 +1,5 @@
-#pragma once
 
+#pragma once
 #include <stdio.h>
 #include <iostream>
 #include <list>
@@ -7,7 +7,7 @@
 #include <iterator>
 
 
-#include "AuraEngine.h"
+//#include "AuraEngine.h"
 #include "GameObjManager.h"
 #include "c_BaseComponent.h"
 #include "c_Transform.h"
@@ -15,39 +15,31 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-
 class GameObject
 {
 	private:
 
 	int uniqueId;
-	c_Transform transform;    //local transform	
+	c_Transform* transform;    //local transform	
 	GameObject* parent;
 	std::vector<GameObject*> children;
-	std::vector<c_BaseComponent*> m_Components;
+	std::vector<c_BaseComponent*> components;
 	
 	
 	public:
-		
-		int setID();
-		int getID() const { return uniqueId; }
-	
-		void addToObjMgr(GameObject* newObj); 
-		void setParent();
-		void addChild();
-		void addComponent(c_BaseComponent* component);	
+				
+		// Constructor	
+		GameObject();
 
-		void awake();
-		void start();
-		void update();
-	
-		// Constructor
-		GameObject(int Unum); 
-	
 		// Destructor
 		~GameObject();
 
-	
-	
+		c_BaseComponent* componentBanner;
+		void setParent(GameObject& parent);
+		void addChild(GameObject* child);
+		void addComponent(c_BaseComponent* component);	
+			
+		void start();
+		void update();	
 };
 

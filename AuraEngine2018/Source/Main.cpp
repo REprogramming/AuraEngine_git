@@ -7,8 +7,7 @@ int main()
 		AuraEngine::start();
 	}
 
-	system("pause");	
-
+	system("pause");
 	return 0;
 }
 
