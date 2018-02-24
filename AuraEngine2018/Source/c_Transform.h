@@ -12,7 +12,6 @@ public:
 	float x, y;
 };
 
-
 class c_Transform : public c_BaseComponent, sf::Transformable
 {
 	public:
@@ -25,9 +24,6 @@ class c_Transform : public c_BaseComponent, sf::Transformable
 		
 		void translate(float x, float y);		
 		void rotate(float degrees); 
-		void scale(float x, float y);			
-
-	private:
-		sf::Transform transformMatrix;			
+		void scale(float x, float y);		
 };
 

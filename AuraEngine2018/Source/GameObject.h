@@ -17,29 +17,27 @@
 
 class GameObject
 {
-	private:
-
-	int uniqueId;
-	c_Transform* transform;   	
-	GameObject* parent;
-	std::vector<GameObject*> children;
-	std::vector<c_BaseComponent*> components;
-	
-	
-	public:
-				
-		// Constructor	
-		GameObject();
-
-		// Destructor
+	public:						
+		GameObject();	
 		~GameObject();
 
+		static int uniqueId; 
+		sf::Transform worldTransform; 
+
 		c_BaseComponent* componentBanner;
+		int getUniqueId(); 
 		void setParent(GameObject& parent);
 		void addChild(GameObject* child);
 		void addComponent(c_BaseComponent* component);	
 			
 		void start();
 		void update();	
+
+	private:
+		c_Transform * transform;
+		GameObject* parent;
+		int thisObjUniqueId;
+		std::vector<GameObject*> children;
+		std::vector<c_BaseComponent*> components;
 };
 

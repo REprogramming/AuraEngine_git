@@ -3,22 +3,20 @@
 // Static variables - predefined
 bool AuraEngine::isRunning;
 AuraEngine::gameEngineRequirements AuraEngine::gameRequirements;
-GameObjManager AuraEngine::fullScene; 
+GameObjManager AuraEngine::sceneGraph; 
 
 bool AuraEngine::initialize()
 {
 	// Display Splash Screen
 	displaySplashScreen();
 	
-	// Check requirements
+	// Checking requirements
 	gameEngineRequirements;
 	gameRequirements.CPU_REQUIRED = 1500;
 	gameRequirements.GPU_REQUIRED = 100;
 	gameRequirements.STORAGE_REQUIRED = 1000; 
 	gameRequirements.PHYSICAL_RAM_NEEDED = 100; 
-	gameRequirements.VIRTUAL_RAM_NEEDED = 100; 
-
-	
+	gameRequirements.VIRTUAL_RAM_NEEDED = 100; 	
 	
 	std::cout << "Starting initialize..." << std::endl;
 	isRunning = false;
@@ -31,7 +29,6 @@ bool AuraEngine::initialize()
 
 	if (!checkCPU())
 		return false;
-
 	
 	return true; 	
 }
@@ -72,10 +69,12 @@ bool AuraEngine::checkAvailMemory()
 	}
 
 	char *buff = new char(gameRequirements.VIRTUAL_RAM_NEEDED);
-	if (buff) {
+	if (buff) 
+	{
 		delete[] buff;
 	}
-	else {
+	else 
+	{
 		std::cout << "CheckMemory Failure: Not enough contiguous memory." << std::endl;
 		return false;
 	}
@@ -84,96 +83,91 @@ bool AuraEngine::checkAvailMemory()
 	return false;
 }
 
-	bool AuraEngine::checkCPU()
-	{		
-		std::cout << "Checking CPU..." << std::endl;
+bool AuraEngine::checkCPU()
+{		
+	std::cout << "Checking CPU..." << std::endl;
 		
-		char Buffer[_MAX_PATH];
-		DWORD BufSize = sizeof(DWORD);
-		DWORD dwMHZ = 0;
-		DWORD type = REG_DWORD;
-		HKEY hKey;
-		DWORD stringType = REG_SZ;
-		char charArray[MAX_PATH];
-		long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &hKey);
+	char Buffer[_MAX_PATH];
+	DWORD BufSize = sizeof(DWORD);
+	DWORD dwMHZ = 0;
+	DWORD type = REG_DWORD;
+	HKEY hKey;
+	DWORD stringType = REG_SZ;
+	char charArray[MAX_PATH];
+	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &hKey);
 
-		if (lError != ERROR_SUCCESS)
-		{
-			FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, lError, 0, Buffer, _MAX_PATH, 0);
-			return false;
-		}
-		RegQueryValueEx(hKey, "~MHz", NULL, &type, (LPBYTE)&dwMHZ, &BufSize);
+	if (lError != ERROR_SUCCESS)
+	{
+		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, lError, 0, Buffer, _MAX_PATH, 0);
+		return false;
+	}
+	RegQueryValueEx(hKey, "~MHz", NULL, &type, (LPBYTE)&dwMHZ, &BufSize);
 		
-		if (dwMHZ > gameRequirements.CPU_REQUIRED)
-		{
-			std::cout << "CPU SPEED (MHz): " << dwMHZ << std::endl;
+	if (dwMHZ > gameRequirements.CPU_REQUIRED)
+	{
+		std::cout << "CPU SPEED (MHz): " << dwMHZ << std::endl;
 
-			long cError = RegQueryValueEx(hKey, "ProcessorNameString", NULL, &stringType, (LPBYTE)&charArray, &BufSize);
-			while (cError == ERROR_MORE_DATA) {
-				BufSize++;
-				cError = RegQueryValueEx(hKey, "ProcessorNameString", NULL, &stringType, (LPBYTE)&charArray, &BufSize);
-			}
-			std::cout << charArray << std::endl;
-			std::cout << "CPU check successful. " << dwMHZ << "MHz" << std::endl;
+		long cError = RegQueryValueEx(hKey, "ProcessorNameString", NULL, &stringType, (LPBYTE)&charArray, &BufSize);
+		while (cError == ERROR_MORE_DATA) {
+			BufSize++;
+			cError = RegQueryValueEx(hKey, "ProcessorNameString", NULL, &stringType, (LPBYTE)&charArray, &BufSize);
 		}
-		else 
-		{
-			std::cout << "INSUFFICENT CPU SPEED REQUIREMENTS." << std::endl; 
-		}				
-		return dwMHZ;		
+		std::cout << charArray << std::endl;
+		std::cout << "CPU check successful. " << dwMHZ << "MHz" << std::endl;
+	}
+	else 
+	{
+		std::cout << "INSUFFICENT CPU SPEED REQUIREMENTS." << std::endl; 
+	}				
+	return dwMHZ;		
+}
+
+void AuraEngine::displaySplashScreen()
+{
+	sf::RenderWindow window(sf::VideoMode(800, 600), "AURA GAME ENGINE 2018");
+	window.setFramerateLimit(30);
+
+	sf::Texture splashTexture;
+	if (!splashTexture.loadFromFile("../assets/textures/auraSplash.jpg"))
+	{
+		std::cout << "Splash texture not found" << std::endl;
+		return;
 	}
 
-	void AuraEngine::displaySplashScreen()
+	sf::Sprite sprite(splashTexture);
+	sprite.setScale(0.5f, 0.5f);
+	window.clear();
+	window.draw(sprite);
+	window.display();
+}
+	
+
+void AuraEngine::start()
+{				
+	while (isRunning)
 	{
-		sf::RenderWindow window(sf::VideoMode(800, 600), "AURA GAME ENGINE 2018");
-		window.setFramerateLimit(30);
+		gameLoop();
+	}
+}
+	
+void AuraEngine::gameLoop()
+{
+	sf::RenderWindow window(sf::VideoMode(1024, 768), "SFML");
+	window.setFramerateLimit(30);
+		
+	while (window.isOpen())
+	{
+		// handle events
+		sf::Event event;			
 
-		sf::Texture splashTexture;
-		if (!splashTexture.loadFromFile("../assets/textures/auraSplash.jpg"))
-		{
-			std::cout << "Splash texture not found" << std::endl;
-			return;
-		}
-
-		sf::Sprite sprite(splashTexture);
-		sprite.setScale(0.5f, 0.5f);
+		// update
+		AuraEngine::sceneGraph.update(); 			
 		window.clear();
-		window.draw(sprite);
+
+		// draw objects
 		window.display();
 	}
-	
-	
-
-	void AuraEngine::start()
-	{				
-		while (isRunning)
-		{
-			gameLoop();
-		}
-	}
-
-
-
-	void AuraEngine::gameLoop()
-	{
-		sf::RenderWindow window(sf::VideoMode(1024, 768), "SFML");
-		window.setFramerateLimit(30);
-
-	
-
-		while (window.isOpen())
-		{
-			// handle events
-			sf::Event event;			
-
-			// update			
-			fullScene.update(); // Update each gameObject in the fullScene...
-			window.clear();
-
-			// draw objects
-			window.display();
-		}
-	}
+}
 
 
 

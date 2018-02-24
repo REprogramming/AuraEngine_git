@@ -9,8 +9,6 @@
 #include "GameObjManager.h"
 class GameObjManager; 
 
-
-
 class AuraEngine
 {
 	public: 	
@@ -34,9 +32,9 @@ class AuraEngine
 			float VIRTUAL_RAM_NEEDED; 
 		};
 	
+		// Create one GameEngineRequirements instance
 		static gameEngineRequirements gameRequirements;
 
-
-		// Create GameObjManager - The SceneGraph/Full Scene
-		static GameObjManager fullScene;
+		// Create one GameObjManager - The Scene Graph
+		static GameObjManager sceneGraph;
 };

@@ -9,20 +9,12 @@
 class GameObject;
 #include "AuraEngine.h"
 
-
  class GameObjManager
 {		
 	public:
-		
-		GameObjManager();
-		~GameObjManager();				
-		
 		void start();	
 		void update();	
 		void addObj(GameObject* someObj); 	
-
-	private: 
-	std::vector<GameObject*> listOfObjs;
-
+		std::vector<GameObject*> listOfObjs;
 };
 

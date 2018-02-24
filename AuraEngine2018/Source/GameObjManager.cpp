@@ -1,36 +1,25 @@
 #include "GameObjManager.h"
 
 
-GameObjManager::GameObjManager()
-{	
-}
-
-GameObjManager::~GameObjManager()
-{
-}
-
-
 void GameObjManager::start()
 {
-	/*
-	for (std::map<int, GameObject*>::iterator i = listOfObjects.begin(); i != listOfObjects.end(); ++i) {
-		(i->second)->start();
-	}*/
+	for (std::vector<GameObject*>::iterator it = AuraEngine::sceneGraph.listOfObjs.begin(); it != AuraEngine::sceneGraph.listOfObjs.end(); it++)
+	{
+		(*it)->start(); // call each GameObjects start()
+	}
 }
-
 
 void GameObjManager::update()
-{
-	/*
-	for (std::map<int, GameObject*>::iterator i = listOfObjects.begin(); i != listOfObjects.end(); ++i) {
-		(i->second)->update();
-	}*/
+{		
+	for (std::vector<GameObject*>::iterator it = AuraEngine::sceneGraph.listOfObjs.begin(); it != AuraEngine::sceneGraph.listOfObjs.end(); it++) 
+	{
+		(*it)->update(); // call each GameObjects update()
+	}	
 }
-
 
 void GameObjManager::addObj(GameObject* someObj)
 {
-	this->listOfObjs.push_back(someObj); 
+	AuraEngine::sceneGraph.listOfObjs.push_back(someObj);
 }
 
 
