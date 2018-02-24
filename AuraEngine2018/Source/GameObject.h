@@ -20,7 +20,7 @@ class GameObject
 	private:
 
 	int uniqueId;
-	c_Transform* transform;    //local transform	
+	c_Transform* transform;   	
 	GameObject* parent;
 	std::vector<GameObject*> children;
 	std::vector<c_BaseComponent*> components;

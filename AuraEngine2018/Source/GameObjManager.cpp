@@ -10,7 +10,6 @@ GameObjManager::~GameObjManager()
 }
 
 
-
 void GameObjManager::start()
 {
 	/*

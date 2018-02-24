@@ -167,7 +167,7 @@ bool AuraEngine::checkAvailMemory()
 			sf::Event event;			
 
 			// update			
-			fullScene.update(); 
+			fullScene.update(); // Update each gameObject in the fullScene...
 			window.clear();
 
 			// draw objects

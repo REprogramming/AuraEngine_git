@@ -3,7 +3,6 @@
 class AuraEngine; 
 
 
-
 GameObject::GameObject()
 {	
 	AuraEngine::fullScene.addObj(this);
@@ -16,12 +15,10 @@ GameObject::~GameObject()
 {
 }
 
-
 void GameObject::addComponent(c_BaseComponent* component)
 {
 	this->components.push_back(component);
 }
-
 
 void GameObject::setParent(GameObject& parent)
 {

@@ -4,7 +4,6 @@
 #include "SFML\Graphics.hpp"
 #include "SFML\Graphics\Transform.hpp"
 
-
 struct Vector2
 {
 public:
@@ -14,13 +13,8 @@ public:
 };
 
 
-
 class c_Transform : public c_BaseComponent, sf::Transformable
 {
-	void calculateTransform(){
-
-	}
-
 	public:
 		c_Transform();
 		~c_Transform();
@@ -34,7 +28,6 @@ class c_Transform : public c_BaseComponent, sf::Transformable
 		void scale(float x, float y);			
 
 	private:
-		sf::Transform transformMatrix;
-			
+		sf::Transform transformMatrix;			
 };
 

@@ -2,26 +2,13 @@
 #include "c_Transform.h"
 
 
-float x;
-float y;
-float z;
-float rotateX;
-float rotateY; 
-float rotateZ; 
-float scaleX;
-float scaleY; 
-float scaleZ; 
-float alpha;
-
-
 c_Transform::c_Transform()
 {
 }
 
-c_Transform::~c_Transform() // DESTRUCTOR
+c_Transform::~c_Transform() 
 {
 }
-
 
 void c_Transform::translate(float x, float y)
 {	

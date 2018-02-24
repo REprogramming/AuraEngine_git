@@ -13,7 +13,6 @@ class GameObjManager;
 
 class AuraEngine
 {
-
 	public: 	
 	
 		static void start(); 
@@ -38,6 +37,6 @@ class AuraEngine
 		static gameEngineRequirements gameRequirements;
 
 
-		// Create GameObjManager - Scene Graph
+		// Create GameObjManager - The SceneGraph/Full Scene
 		static GameObjManager fullScene;
 };
