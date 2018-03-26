@@ -161,7 +161,7 @@ void AuraEngine::gameLoop()
 		sf::Event event;			
 
 		// update
-		AuraEngine::sceneGraph.update(); 			
+		AuraEngine::sceneGraph.update(); 	// GameObjManager		
 		window.clear();
 
 		// draw objects
