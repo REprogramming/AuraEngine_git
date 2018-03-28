@@ -1,36 +1,71 @@
-
 #include "c_Transform.h"
 
+float x;
+float y;
+float z;
+float alpha;
 
-c_Transform::c_Transform()
+
+c_Transform::c_Transform() // CONSTRUCTOR
+{
+	vec3(0, 0, 0);
+	vecUI3(0.0f, 0.0f, 0.0f, 0.0f);
+}
+
+
+c_Transform::~c_Transform() // DESTRUCTOR
 {
 }
 
-c_Transform::~c_Transform() 
+void c_Transform::vec2(float x, float y)
 {
+	x = x;
+	y = y;
 }
 
-void c_Transform::translate(float x, float y)
-{	
-	this->myPosition.x += x;
-	this->myPosition.y += y; 
-	
-	sf::Transform t; 
-	t.translate(myPosition.x, myPosition.y); 
+void c_Transform::vec3(float x, float y, float z)
+{
+	x = x;
+	y = y;
+	z = z;
 }
 
-void c_Transform::rotate(float degrees)
-{	
-	sf::Transform obj;
-	obj.rotate(degrees);
+void c_Transform::vecUI2(float x, float y, float alpha)
+{
+	x = x;
+	y = y;
+	alpha = alpha;
 }
 
-void c_Transform::scale(float x, float y)
-{	
-	myScale.x *= x;
-	myScale.y *= y; 	
-
-	sf::Transform t;
-	t.scale(myScale.x, myScale.y);
+void c_Transform::vecUI3(float x, float y, float z, float alpha)
+{
+	x = x;
+	y = y;
+	z = z;
+	alpha = alpha;
 }
 
+void c_Transform::setX(float x)
+{
+	x = x;
+}
+
+void c_Transform::setY(float y)
+{
+	y = y;
+}
+
+void c_Transform::setZ(float z)
+{
+	z = z;
+}
+
+void c_Transform::setAlpha(float alpha)
+{
+	alpha = alpha;
+}
+
+void c_Transform::update()
+{
+	std::cout << "Updating Transform component" << std::endl; 
+}

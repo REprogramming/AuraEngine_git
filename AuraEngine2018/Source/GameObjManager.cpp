@@ -1,25 +1,30 @@
 #include "GameObjManager.h"
 
 
-void GameObjManager::start()
+std::vector<GameObject*> GameObjManager::listOfGameObjs;
+int GameObjManager::gameObjectIDs = 0; 
+
+GameObjManager::GameObjManager()
 {
-	for (std::vector<GameObject*>::iterator it = AuraEngine::sceneGraph.listOfObjs.begin(); it != AuraEngine::sceneGraph.listOfObjs.end(); it++)
-	{
-		(*it)->start(); // call each GameObjects start()
-	}
 }
 
-void GameObjManager::update()
-{		
-	for (std::vector<GameObject*>::iterator it = AuraEngine::sceneGraph.listOfObjs.begin(); it != AuraEngine::sceneGraph.listOfObjs.end(); it++) 
+GameObjManager::~GameObjManager()
+{
+}
+
+void GameObjManager::addObj(GameObject &someObject)
+{
+	std::cout << "Obj added to GameObjManager." << std::endl; 
+	GameObjManager::listOfGameObjs.push_back(&someObject);
+}
+
+void GameObjManager::removeObj(GameObject &someObject, int someID)
+{
+	for (int i = 0; i < GameObjManager::listOfGameObjs.size(); i++)
 	{
-		(*it)->update(); // call each GameObjects update()
+		if (someID == GameObjManager::listOfGameObjs[i]->ID); 
+		{
+			// destroy/delete game object
+		}
 	}	
 }
-
-void GameObjManager::addObj(GameObject* someObj)
-{
-	AuraEngine::sceneGraph.listOfObjs.push_back(someObj);
-}
-
-

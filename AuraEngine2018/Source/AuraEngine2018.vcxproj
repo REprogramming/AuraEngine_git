@@ -70,19 +70,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\Game\$(Configuration)\$(Platform)</OutDir>
+    <OutDir>..\Game</OutDir>
     <IntDir>$(IntDir)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\Game\$(Configuration)\$(Platform)</OutDir>
+    <OutDir>..\Game</OutDir>
     <IntDir>$(IntDir)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\Game\$(Configuration)\$(Platform)</OutDir>
+    <OutDir>..\Game</OutDir>
     <IntDir>$(IntDir)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\Game\$(Configuration)\$(Platform)</OutDir>
+    <OutDir>..\Game</OutDir>
     <IntDir>$(IntDir)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -169,18 +169,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AuraEngine.cpp" />
+    <ClCompile Include="AuraPhysicsEngine.cpp" />
+    <ClCompile Include="c_Audio.cpp" />
     <ClCompile Include="c_BaseComponent.cpp" />
+    <ClCompile Include="c_Input.cpp" />
+    <ClCompile Include="c_RigidBody.cpp" />
     <ClCompile Include="c_Transform.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuraEngine.h" />
+    <ClInclude Include="AuraPhysicsEngine.h" />
+    <ClInclude Include="c_Audio.h" />
     <ClInclude Include="c_BaseComponent.h" />
+    <ClInclude Include="c_Input.h" />
+    <ClInclude Include="c_RigidBody.h" />
     <ClInclude Include="c_Transform.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

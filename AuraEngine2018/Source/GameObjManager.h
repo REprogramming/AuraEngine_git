@@ -1,20 +1,18 @@
-
 #pragma once
-
-#include<map>
 #include<vector>
-
-
 #include "GameObject.h"
-class GameObject;
-#include "AuraEngine.h"
 
- class GameObjManager
-{		
-	public:
-		void start();	
-		void update();	
-		void addObj(GameObject* someObj); 	
-		std::vector<GameObject*> listOfObjs;
+class GameObjManager
+{
+public:
+	GameObjManager();
+	~GameObjManager();
+
+	static int gameObjectIDs;
+
+	static std::vector<GameObject*> listOfGameObjs;
+	static void addObj(GameObject &someObject); 
+	static void removeObj(GameObject &someObject, int someID);
+	
 };
 
