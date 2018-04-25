@@ -1,15 +1,20 @@
 #pragma once
-#include <vector>
+
+#include <iostream>
+#include <SFML/Graphics.hpp>
 
 
-
-class c_BaseComponent
+class c_BaseComponent 
 {
-public:
-	c_BaseComponent();
-	~c_BaseComponent();
+	public:
 
-	// TODO: Update the individual components? Is this even needed? 
-	 void update();	
+		c_BaseComponent();
+		bool isDrawable = false; 
+		virtual ~c_BaseComponent();		
+		virtual void update(sf::RenderWindow* ptr_gameWindow);
+	
+
+	protected:
+	private:
 };
 

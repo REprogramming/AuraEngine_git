@@ -1,6 +1,8 @@
 #pragma once
-#include<vector>
+#include <vector>
+#include "Scene.h"
 #include "GameObject.h"
+
 
 class GameObjManager
 {
@@ -10,9 +12,7 @@ public:
 
 	static int gameObjectIDs;
 
-	static std::vector<GameObject*> listOfGameObjs;
-	static void addObj(GameObject &someObject); 
-	static void removeObj(GameObject &someObject, int someID);
-	
+	static std::vector<GameObject> listOfGameObjs;
+	static void addObj(GameObject someObject); 	
 };
 

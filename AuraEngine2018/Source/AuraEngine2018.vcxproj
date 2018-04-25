@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderFile>
@@ -110,7 +110,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderFile>
@@ -133,7 +133,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderFile>
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -155,7 +155,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderFile>
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\SFML\include;C:\GBC_School\GAME3015_GAME_ENGINE2\AuraEngine2018\Lib\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -170,10 +170,12 @@
   <ItemGroup>
     <ClCompile Include="AuraEngine.cpp" />
     <ClCompile Include="AuraPhysicsEngine.cpp" />
+    <ClCompile Include="c_Asteroid.cpp" />
     <ClCompile Include="c_Audio.cpp" />
     <ClCompile Include="c_BaseComponent.cpp" />
     <ClCompile Include="c_Input.cpp" />
     <ClCompile Include="c_RigidBody.cpp" />
+    <ClCompile Include="c_SpriteRenderer.cpp" />
     <ClCompile Include="c_Transform.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjManager.cpp" />
@@ -184,10 +186,12 @@
   <ItemGroup>
     <ClInclude Include="AuraEngine.h" />
     <ClInclude Include="AuraPhysicsEngine.h" />
+    <ClInclude Include="c_Asteroid.h" />
     <ClInclude Include="c_Audio.h" />
     <ClInclude Include="c_BaseComponent.h" />
     <ClInclude Include="c_Input.h" />
     <ClInclude Include="c_RigidBody.h" />
+    <ClInclude Include="c_SpriteRenderer.h" />
     <ClInclude Include="c_Transform.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjManager.h" />

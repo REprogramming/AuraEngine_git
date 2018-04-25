@@ -1,9 +1,6 @@
 #include "Scene.h"
 #include "AuraEngine.h"
-#include "GameObjManager.h"
-#include "GameObject.h"
 
-#include<iostream>
 
 
 Scene::Scene()
@@ -20,37 +17,35 @@ void Scene::onStart(int someScene)
 {
 	if (someScene == 0)
 	{
-		std::cout << "Loading all game assets..." << std::endl;	
-		GameObject player; 
-		GameObject asteroid; 
-
-		GameObjManager::addObj(player); 
-		for (int i = 0; i < 10; i++)
+		
+		std::cout << "Loading all game assets..." << std::endl;			
+		for (int i = 0; i < 8; i++)
 		{
-			GameObjManager::addObj(asteroid);
+			// Create Asteroids
+			std::cout << std::endl;
+			GameObject objAsteroid; 
+			objAsteroid.addComponent(GameObject::TRANSFORM);
+			objAsteroid.addComponent(GameObject::RIGIDBODY);
+			objAsteroid.addComponent(GameObject::ASTEROID);	
+			objAsteroid.addComponent(GameObject::SPRITE_RENDERER);
+
+			GameObjManager::listOfGameObjs.push_back(objAsteroid);			
 		}		
 	}	
+	
 }
 
 void Scene::run(int someScene)
 {
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "LOST GALAXIES");
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(60);	
 
 	sf::Clock clock;
 
 	sf::CircleShape mPlayer;
-	sf::CircleShape mAsteroid;
-
 	mPlayer.setRadius(40.0f); 
 	mPlayer.setPosition(100.f, 100.f); 
-	mPlayer.setFillColor(sf::Color::Cyan); 	
-
-	mAsteroid.setRadius(40.0f);
-	mAsteroid.setPosition(500.f, 50.f);
-	mAsteroid.setFillColor(sf::Color::Red);
-	
-		
+	mPlayer.setFillColor(sf::Color::Cyan); 		
 	
 	while (AuraEngine::isRunning || window.isOpen())
 	{
@@ -102,50 +97,54 @@ void Scene::run(int someScene)
 				case 1: // Game Scene
 				{				
 					window.setTitle("LOST GALAXIES - GAME SCREEN");						
-					//window.clear();
-					//window.display();	
 					Scene::physicsEnabled = true; 
-					
-						// *** Updating all gameObjects and their components ***
-					for (int i = 0; i < GameObjManager::listOfGameObjs.size(); i++)
-					{						
-						GameObjManager::listOfGameObjs[i]->update();
-					}
+										
+					while (AuraEngine::isRunning)
+					{
+						// *** Clearing the Screen ***
+						window.clear();
 
+						// *** Updating all gameObjects and their components! ***
+						for (unsigned int i = 0; i < GameObjManager::listOfGameObjs.size(); i++)
+						{
+							
+							GameObjManager::listOfGameObjs[i].update(&window);											
+						}
+
+						// *** Drawing all gameObjects to Screen ***
+						window.draw(mPlayer);
+						window.display();
 
 						// Input 			
-					mPlayer.getPosition();
-					sf::Vector2f currentPosition = mPlayer.getPosition(); 
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-					{
-						currentPosition.y -= 8.0f; 
-						mPlayer.setPosition(currentPosition.x, currentPosition.y); 					
-					}
+						mPlayer.getPosition();
+						sf::Vector2f currentPosition = mPlayer.getPosition();
+						{
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+							currentPosition.y -= 8.0f;
+							mPlayer.setPosition(currentPosition.x, currentPosition.y);
+						}
 
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-					{
-						currentPosition.y += 8.0f;
-						mPlayer.setPosition(currentPosition.x, currentPosition.y);
-					}
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+						{
+							currentPosition.y += 8.0f;
+							mPlayer.setPosition(currentPosition.x, currentPosition.y);
+						}
 
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-					{
-						currentPosition.x -= 8.0f;
-						mPlayer.setPosition(currentPosition.x, currentPosition.y);
-					}
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+						{
+							currentPosition.x -= 8.0f;
+							mPlayer.setPosition(currentPosition.x, currentPosition.y);
+						}
 
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-					{
-						currentPosition.x += 8.0f;
-						mPlayer.setPosition(currentPosition.x, currentPosition.y);
-					}
-
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+						{
+							currentPosition.x += 8.0f;
+							mPlayer.setPosition(currentPosition.x, currentPosition.y);
+						}
+					
+										
+					}	
 				
-						
-					window.clear();
-					window.draw(mPlayer);	
-					window.draw(mAsteroid); 
-					window.display();
 					break;
 				}
 				case 2: // End Screen

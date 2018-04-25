@@ -2,6 +2,11 @@
 
 #include <string>
 #include <vector>
+#include<iostream>
+
+
+#include "GameObjManager.h"
+#include "GameObject.h"
 
 
 
@@ -13,7 +18,7 @@ public:
 
 	std::string sceneName; 
 	int ID;	
-
+	
 	void onStart(int someScene); 
 	void run(int someScene);
 	void end(int nextScreen);	

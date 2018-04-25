@@ -61,7 +61,8 @@ bool AuraEngine::initialize()
 
 void AuraEngine::start()
 {
-	
+	std::cout << std::endl;
+	std::cout << "********************" << std::endl;
 	std::cout << "Starting Aura Engine" << std::endl;
 	buildAllScenes();
 	AuraEngine::SPLASHSCREENSCENE;

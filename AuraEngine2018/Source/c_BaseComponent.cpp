@@ -1,21 +1,18 @@
 #include "c_BaseComponent.h"
-#include "c_Transform.h"
-#include "c_Input.h"
-#include "c_RigidBody.h"
+
 
 
 c_BaseComponent::c_BaseComponent()
 {
-
 }
 
 c_BaseComponent::~c_BaseComponent()
 {
 }
 
-void c_BaseComponent::update()
+void c_BaseComponent::update(sf::RenderWindow* ptr_gameWindow)
 {
-	std::cout << "Components updating..." << std::endl; 	
 }
+
 
 

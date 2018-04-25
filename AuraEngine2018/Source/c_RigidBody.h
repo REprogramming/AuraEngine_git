@@ -2,15 +2,14 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "GameObject.h"
 #include "c_BaseComponent.h"
 #include "AuraPhysicsEngine.h"
 
 class c_RigidBody: public c_BaseComponent
 {
 public:
-	c_RigidBody(float objX, float objY);
-	~c_RigidBody();
+	c_RigidBody();
+	virtual ~c_RigidBody();
 	
 	float mass = 0; 
 	float bouciness = 1; 
@@ -33,12 +32,11 @@ public:
 	void addForce(sf::Vector2f someForce);
 	void stop(); 
 	bool setIsGrounded();
-	void setBoundingBox(float sizeX, float sizeY);
+	//void setBoundingBox(float sizeX, float sizeY);
 	bool AABBCheck(AABB b);
 
 	void onStart(); 
-
-	
+	void update(sf::RenderWindow* ptr_gameWindow);
 
 
 };

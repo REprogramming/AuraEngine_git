@@ -5,6 +5,6 @@ class c_Input : public c_BaseComponent
 {
 public:
 	c_Input();
-	~c_Input();
+	virtual ~c_Input();
 };
 

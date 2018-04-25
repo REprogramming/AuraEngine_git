@@ -2,9 +2,9 @@
 
 
 
-c_RigidBody::c_RigidBody(float objX, float objY)
+c_RigidBody::c_RigidBody()
 {
-	setBoundingBox(objX, objY); 
+	//setBoundingBox(objX, objY); 
 }
 
 
@@ -29,11 +29,12 @@ bool c_RigidBody::setIsGrounded()
 	return isGrounded;
 }
 
+/*
 void c_RigidBody::setBoundingBox(float sizeX, float sizeY)
 {
-
 	// TODO: Set the bounding box of this object.  How to get the transform/size of this object?	
-}
+
+}*/
 
 bool c_RigidBody::AABBCheck(AABB b)
 {
@@ -48,4 +49,9 @@ bool c_RigidBody::AABBCheck(AABB b)
 
 void c_RigidBody::onStart()
 {
+}
+
+void c_RigidBody::update(sf::RenderWindow* ptr_gameWindow)
+{
+	std::cout << "Updating RigiBody" << std::endl; 
 }

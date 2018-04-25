@@ -2,6 +2,8 @@
 #include "AuraEngine.h"
 
 
+static std::vector<GameObject*> listOfGameObjects;
+
 int main()
 {	
 	if (AuraEngine::initialize()) 
